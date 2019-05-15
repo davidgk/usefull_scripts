@@ -8,9 +8,8 @@ PROJECT_LOCATION=$(PWD)
 
 
 mkdir $PROJECT_LOCATION/lib;
-mkdir $PROJECT_LOCATION/lib/$1
 mkdir $PROJECT_LOCATION/spec;
-mkdir $PROJECT_LOCATION/spec/$1
+
 echo "# Gemfile
 source 'https://rubygems.org'
 
@@ -30,7 +29,7 @@ cd $PROJECT_LOCATION/spec
 
 echo "# Example rspec
 
-require 'rspec_example'
+require '../lib/rspec_example'
 
 describe 'RspecExample' do
   describe '#suma' do
@@ -52,7 +51,9 @@ class RspecExample
 	end
 end" >> rspec_example.rb
 
-bundle exec rspec
+cd $PROJECT_LOCATION/spec
+
+bundle exec rspec rspec_example_spec.rb
 
 git init 
 
